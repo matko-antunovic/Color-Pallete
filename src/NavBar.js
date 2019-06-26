@@ -4,6 +4,7 @@ import Slider from "rc-slider";
 import "./NavBar.css";
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import {Link} from "react-router-dom";
 
 class NavBar extends Component {
 
@@ -23,9 +24,9 @@ class NavBar extends Component {
     return (
       <nav className="NavBar">
         <div className="logo">
-          <a href="#">reactcolorpicker</a>
+          <Link to="/">ReactColorPicker</Link>
         </div>
-        <div className="slider-container">
+        {this.props.isSingleColor ? null : <div className="slider-container">
             <span>Level: {level} </span>
           <div className="slider">
             <Slider
@@ -36,7 +37,8 @@ class NavBar extends Component {
               onAfterChange={changeLevel}
             />
           </div>
-        </div>
+        </div>}
+        
         <div className="select-container">
         <Select value={this.state.format} onChange={this.handleChange}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>
